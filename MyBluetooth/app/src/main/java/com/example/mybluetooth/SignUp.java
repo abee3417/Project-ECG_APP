@@ -44,7 +44,7 @@ public class SignUp extends AppCompatActivity {
 
         }
         else {
-            Toast.makeText(getApplicationContext(),"Please recheck your password", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"비밀번호를 확인해주세요.", Toast.LENGTH_LONG).show();
         }
     }
 }

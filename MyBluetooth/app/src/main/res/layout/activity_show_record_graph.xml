@@ -62,8 +62,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <SeekBar
-        android:id="@+id/ecg_graph_seekbar_history"
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/oldchart"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_alignParentEnd="true"
@@ -87,7 +87,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_weight="2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ecg_graph_seekbar_history" />
+        app:layout_constraintTop_toBottomOf="@+id/oldchart" />
 
     <TextView
         android:id="@+id/textView15"
@@ -116,7 +116,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_weight="3"
         app:layout_constraintStart_toEndOf="@+id/textView14"
-        app:layout_constraintTop_toBottomOf="@+id/ecg_graph_seekbar_history" />
+        app:layout_constraintTop_toBottomOf="@+id/oldchart" />
 
     <TextView
         android:id="@+id/nums_of_Lies_history"
@@ -131,4 +131,6 @@
         app:layout_constraintHorizontal_weight="3"
         app:layout_constraintStart_toEndOf="@+id/textView15"
         app:layout_constraintTop_toBottomOf="@+id/runtime_history_Text" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

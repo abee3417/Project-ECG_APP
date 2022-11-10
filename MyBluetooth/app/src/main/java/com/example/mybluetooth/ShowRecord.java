@@ -17,8 +17,8 @@ public class ShowRecord extends AppCompatActivity {
     private String username;
     private ListView record_list;
 
-    ArrayList<ArrayList<Integer>> data_list = new ArrayList<>(); //ArrayList<data>
-    ArrayList<String> list_name = new ArrayList<>();
+    ArrayList<ArrayList<Integer>> history = new ArrayList<>(); //기록들을 담는 리스트
+    ArrayList<String> record_name = new ArrayList<>();
 
     // Retrofit, API 백엔드 추가
 
@@ -28,7 +28,7 @@ public class ShowRecord extends AppCompatActivity {
         setContentView(R.layout.activity_show_record);
 
         record_list = (ListView)findViewById(R.id.results);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list_name);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, record_name);
         record_list.setAdapter(adapter);
 
         Intent intent = getIntent();
@@ -41,7 +41,7 @@ public class ShowRecord extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 /* ShowRecordGraph 완성 후 주석해제
                 Intent intent = new Intent(getApplicationContext(), ShowRecordGraph.class);
-                intent.putExtra("ECG DATA", data_list.get(position));
+                intent.putExtra("OldData", history.get(position));
                 startActivity(intent);
 
                 */
@@ -52,4 +52,13 @@ public class ShowRecord extends AppCompatActivity {
     public void onBack1BtnClicked(View v) {
         finish();
     }
+
+    /*
+    public void onTestBtnClicked(View v) { // 테스트를 위한 임시 버튼
+        Intent intent = new Intent(getApplicationContext(), ShowRecordGraph.class);
+        intent.putExtra("OldData", history);
+        startActivity(intent);
+    }
+
+    */
 }

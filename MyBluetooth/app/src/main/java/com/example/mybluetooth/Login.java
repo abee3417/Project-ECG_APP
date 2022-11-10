@@ -35,7 +35,7 @@ public class Login extends AppCompatActivity {
 
     public void onTestBtnClicked(View v) { // 테스트를 위한 임시 버튼
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        intent.putExtra("Login_user", "Yunseong");
+        intent.putExtra("Login", "Yunseong");
         username.setText("");
         password.setText("");
         startActivity(intent);

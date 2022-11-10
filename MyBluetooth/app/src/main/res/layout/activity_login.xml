@@ -13,49 +13,37 @@
     tools:context=".Login">
 
     <TextView
-        android:id="@+id/logo_Text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:text="거짓말 탐지기"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="40sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="9dp" />
-
-    <TextView
         android:id="@+id/id_plainText"
         android:layout_width="30dp"
         android:layout_height="45dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="2dp"
-        android:gravity="center_vertical"
         android:text="ID"
         android:textAlignment="textEnd"
+        android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/ID_input"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo_Text" />
+        app:layout_constraintTop_toBottomOf="@+id/main_logo" />
 
     <EditText
         android:id="@+id/ID_input"
         android:layout_width="0dp"
         android:layout_height="48dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="15sp"
         android:ems="10"
         android:hint="Input your ID"
         android:inputType="textPersonName"
+        android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/id_plainText"
-        app:layout_constraintTop_toBottomOf="@+id/logo_Text" />
+        app:layout_constraintTop_toBottomOf="@+id/main_logo" />
 
     <EditText
         android:id="@+id/PS_input"
@@ -66,6 +54,7 @@
         android:ems="10"
         android:hint="Input your Password"
         android:inputType="textPassword"
+        android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/PS_plainText"
@@ -78,10 +67,10 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="2dp"
-        android:gravity="clip_horizontal|center_vertical"
         android:lineSpacingExtra="10sp"
         android:text="PS"
         android:textAlignment="textEnd"
+        android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/PS_input"
         app:layout_constraintHorizontal_bias="0.5"
@@ -136,4 +125,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/PS_input"
         app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/main_logo"
+        android:layout_width="314dp"
+        android:layout_height="297dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/mainlogo_main"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Intent intent = getIntent();
-        name = intent.getStringExtra("Login_user");
+        name = intent.getStringExtra("Login");
 
         mBluetoothStatus = (TextView)findViewById(R.id.bluetoothStatus);
         mScanBtn = (Button)findViewById(R.id.scan);
@@ -98,16 +98,15 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                     if(sum == 1024) { // sum 초기화
-                        System.out.println("finished");
                         sum = 0;
                     }
                 }
 
                 if(msg.what == CONNECTING_STATUS){ // 문구 손 볼것.
                     if(msg.arg1 == 1)
-                        mBluetoothStatus.setText("Connected to Device: " + (String)(msg.obj));
+                        mBluetoothStatus.setText("블루투스 연결 기기: " + (String)(msg.obj));
                     else
-                        mBluetoothStatus.setText("Connection Failed");
+                        mBluetoothStatus.setText("연결 실패");
                 }
             }
         };
@@ -115,18 +114,18 @@ public class MainActivity extends AppCompatActivity {
         if (mBTArrayAdapter == null) { // FIX
             // Device does not support Bluetooth
             mBluetoothStatus.setText("Status: Bluetooth not found");
-            Toast.makeText(getApplicationContext(),"Bluetooth device not found!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"블루투스 기기 없음",Toast.LENGTH_SHORT).show();
         }
         else {
             mStartBtn.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){
-                    if (sum == 0) {
+                    if (sum == 0) { // 접속되면 데이터를 아두이노로부터 받기 시작
                         data.clear();
                         mConnectedThread.write("1");
                     }
-                    else {
-                        Toast.makeText(getApplicationContext(),"Pair your device first!", Toast.LENGTH_SHORT).show();
+                    else { // 오류메세지 출력
+                        Toast.makeText(getApplicationContext(),"블루투스를 먼저 연결하세요.", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -159,11 +158,11 @@ public class MainActivity extends AppCompatActivity {
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
             mBluetoothStatus.setText("Bluetooth enabled");
-            Toast.makeText(getApplicationContext(),"Bluetooth turned on",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"블루투스 ON",Toast.LENGTH_SHORT).show();
 
         }
         else{
-            Toast.makeText(getApplicationContext(),"Bluetooth is already on", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"블루투스가 이미 켜져있습니다.", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -190,6 +189,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onShowBtnClicked(View v) {
+        // test용
+        Intent intent = new Intent(getApplicationContext(), ShowResult.class);
+        intent.putExtra("Data", data);
+        intent.putExtra("Username", name);
+
+        startActivity(intent);
+        /*
         if(data.size() >= 1024) {
             Intent intent = new Intent(getApplicationContext(), ShowResult.class);
             intent.putExtra("Data", data);
@@ -201,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "측정을 먼저 해주세요.", Toast.LENGTH_SHORT
             ).show();
         }
-
+        */
     }
 
     public void onRecordBtnClicked(View v) {
@@ -214,41 +220,6 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),"로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
         finish();
     }
-
-    /*
-    DISCOVER 관련코드 : 일단 보류
-    private void discover(View view){
-        // Check if the device is already discovering
-        if(mBTAdapter.isDiscovering()){
-            mBTAdapter.cancelDiscovery();
-            Toast.makeText(getApplicationContext(),"Discovery stopped",Toast.LENGTH_SHORT).show();
-        }
-        else{
-            if(mBTAdapter.isEnabled()) {
-                mBTArrayAdapter.clear(); // clear items
-                mBTAdapter.startDiscovery();
-                Toast.makeText(getApplicationContext(), "Discovery started", Toast.LENGTH_SHORT).show();
-                registerReceiver(blReceiver, new IntentFilter(BluetoothDevice.ACTION_FOUND));
-            }
-            else{
-                Toast.makeText(getApplicationContext(), "Bluetooth not on", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
-    final BroadcastReceiver blReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            if(BluetoothDevice.ACTION_FOUND.equals(action)){
-                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                // add the name to the list
-                mBTArrayAdapter.add(device.getName() + "\n" + device.getAddress());
-                mBTArrayAdapter.notifyDataSetChanged();
-            }
-        }
-    };
-    */
 
     private void listPairedDevices(View view){
         mPairedDevices = mBTAdapter.getBondedDevices();
