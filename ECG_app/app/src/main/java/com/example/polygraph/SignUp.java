@@ -11,7 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-/*
+
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
@@ -24,26 +24,26 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
- */
+
 
 import java.util.HashMap;
 
 public class SignUp extends AppCompatActivity {
     //GUI COMPONENTS
-    //private FirebaseAuth mFirebaseAuth; //파이어베이스 인증처리
-    //private DatabaseReference mDatabaseRef; //실시간 데이터베이스
+    private FirebaseAuth mFirebaseAuth; //파이어베이스 인증처리
+    private DatabaseReference mDatabaseRef; //실시간 데이터베이스
     private EditText newEmail;
     private EditText newPassword;
     private Button newRegister;
-    //private FirebaseFirestore mFireStore;
+    private FirebaseFirestore mFireStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        //mFirebaseAuth = FirebaseAuth.getInstance();
-        //mDatabaseRef = FirebaseDatabase.getInstance().getReference("myecg");
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("myecg");
 
         newEmail = findViewById(R.id.email_Input);
         newPassword = findViewById(R.id.PS_Input);
@@ -56,7 +56,7 @@ public class SignUp extends AppCompatActivity {
                 String strEmail = newEmail.getText().toString();
                 String strpwd = newPassword.getText().toString();
 
-                /*
+
                 //Firebase 진행
                 mFirebaseAuth.createUserWithEmailAndPassword(strEmail, strpwd).addOnCompleteListener(SignUp.this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -80,7 +80,7 @@ public class SignUp extends AppCompatActivity {
                     }
                 });
 
-                 */
+
             }
         });
 

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "625057048738",
+    "firebase_url": "https://my-ecg-f505c-default-rtdb.firebaseio.com",
+    "project_id": "my-ecg-f505c",
+    "storage_bucket": "my-ecg-f505c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:625057048738:android:909b9a5962d33de40dcffb",
+        "android_client_info": {
+          "package_name": "com.example.polygraph"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "625057048738-t646i7h4s2ijcr4fg9q69kbb6pm5e3nc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlPe_E1xXl7VPVmjlVI1ILdVGycLEC650"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "625057048738-t646i7h4s2ijcr4fg9q69kbb6pm5e3nc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -9,18 +9,19 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Date;
 
 import androidx.appcompat.app.AppCompatActivity;
-/*
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
 
- */
+
 
 
 import java.util.ArrayList;
@@ -31,8 +32,8 @@ import java.util.Random;
 public class ShowResult extends AppCompatActivity {
 
     private String username;
-    //private FirebaseAuth mFirebaseAuth; //파이어베이스 인증처리
-    //private FirebaseFirestore mFireStore;
+    private FirebaseAuth mFirebaseAuth; //파이어베이스 인증처리
+    private FirebaseFirestore mFireStore;
     private String newtmp = "70bpm";
     private String newlie = "lie";
     private String new_id;
@@ -72,41 +73,45 @@ public class ShowResult extends AppCompatActivity {
         ArrayAdapter<String> tmpAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, tmp);
         result_list.setAdapter(tmpAdapter);
 
-        // 테스트용 출력 코드
-        for (int i = 0; i < data.size() - 1; i++){
-            sec1 = data.get(i) / 10000;
-            sec2 = data.get(i) % 10000;
-            String tmp1 = Integer.toString(sec1) + "초 ";
-            String tmp2 = Integer.toString(sec2);
-            tmp.add(tmp1 + tmp2);
-            count++;
+        if (data.size() > 1){
+            for (int i = 0; i < data.size() - 1; i++){
+                sec1 = data.get(i) / 1000;
+                sec2 = data.get(i) % 1000;
+                String tmp1 = Integer.toString(sec1) + "초 ";
+                String tmp2 = Integer.toString(sec2);
+                tmp.add(tmp1 + tmp2);
+                count++;
+            }
+            tmpAdapter.notifyDataSetChanged();
+            // 측정시간 저장, 출력
+            lieP_str = Integer.toString(count);
+            lieP.setText(lieP_str + "번");
         }
-        tmpAdapter.notifyDataSetChanged();
-
-        // 측정시간 저장, 출력
-        lieP_str = Integer.toString(count);
-        lieP.setText(lieP_str + "번");
+        else{ // 이상 심박횟수가 없을 경우 정상출력
+            lieP_str = "0";
+            lieP.setText("정상입니다!");
+        }
 
         // 횟수 체크 표시 이후에 저장
-        count = data.size() - 1;
-        sec1 = data.get(count) / 10000;
-        sec2 = data.get(count) % 10000;
+        count = data.size() - 1; // 마지막 데이터는 측정시간
+        sec1 = data.get(count) / 1000;
+        sec2 = data.get(count) % 1000;
 
         runtime_str = Integer.toString(sec1) + "초 " + Integer.toString(sec2);
         runtime.setText(runtime_str);
         String save_runtime_str = Integer.toString(data.get(count));
-        runtime_str = save_runtime_str;
+        //runtime_str = save_runtime_str;
 
         // 메모 작성, 저장 코드
         memo_text = findViewById(R.id.memo_input);
         memo = memo_text.getText().toString();
 
-        // mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseAuth = FirebaseAuth.getInstance();
 
 
 
     }
-    /*
+
     public void setup(){
         mFireStore = FirebaseFirestore.getInstance();
         FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
@@ -115,23 +120,28 @@ public class ShowResult extends AppCompatActivity {
         mFireStore.setFirestoreSettings(settings);
     }
 
-     */
+
 
     public void onSaveBtnClicked(View v) {
         HashMap<String, Object> input = new HashMap<>();
         input.put("ecg", data.toString());
         input.put("ecg_user", username);
         Log.d("TEST", data.toString());
-        /*
+        // 메모 작성, 저장 코드
+        memo_text = findViewById(R.id.memo_input);
+        memo = memo_text.getText().toString();
+
         setup();
         UserData data = new UserData();
-        data.setUserTime(String.valueOf(date_now));
-        data.setLie(newlie);
-        data.setTmp(newtmp);
+        data.setMemo(memo);
+        data.setLie(lieP_str);
+        data.setUserTime(runtime_str);
         data.setUid(mFirebaseAuth.getUid());
         mFireStore.collection("User").document("doc").collection("data").document().set(data);
+        Toast.makeText(ShowResult.this, "저장 성공",Toast.LENGTH_SHORT).show();
 
-         */
+
+
 
     }
 

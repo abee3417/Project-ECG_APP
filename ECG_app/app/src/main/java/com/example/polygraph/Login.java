@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-/*
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
@@ -21,11 +21,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
- */
+
 
 public class Login extends AppCompatActivity {
-    //private FirebaseAuth mFirebaseAuth; //파이어베이스 인증처리
-    //private DatabaseReference mDatabaseRef; //실시간 데이터베이스
+    private FirebaseAuth mFirebaseAuth; //파이어베이스 인증처리
+    private DatabaseReference mDatabaseRef; //실시간 데이터베이스
     private EditText newEmail;
     private EditText newPassword;
 
@@ -34,8 +34,8 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        //mFirebaseAuth = FirebaseAuth.getInstance();
-        //mDatabaseRef = FirebaseDatabase.getInstance().getReference("myecg");
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("myecg");
 
         newEmail = findViewById(R.id.ID_input);
         newPassword = findViewById(R.id.PS_input);
@@ -46,12 +46,8 @@ public class Login extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // 파베 없을 때 테스트용 코드
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.putExtra("Login", "Yunseong");
-                startActivity(intent);
 
-                /*
+
                 //로그인
                 String strEmail = newEmail.getText().toString();
                 String strPwd = newPassword.getText().toString();
@@ -62,6 +58,7 @@ public class Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             //로그인 성공
+                            Toast.makeText(Login.this, "로그인 성공",Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(Login.this, MainActivity.class);
                             startActivity(intent);
                             finish();
@@ -72,7 +69,7 @@ public class Login extends AppCompatActivity {
                     }
                 });
 
-                 */
+
             }
         });
 
