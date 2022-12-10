@@ -1,0 +1,21 @@
+1. Yang Yun Seong
+- Main Director
+- Front End Development (Code, Thread, Bluetooth)
+- Making Project Proposal
+
+2. Kang Hyeong Cheol
+- Front End Development (UI Design, XML)
+- Making Final Report
+- Presentation
+
+3. Seo Won Hyeong
+- Back End Development (Database Queries)
+- Presentation
+
+4. Eom Hyeon Ho
+- Back End Development (Server, Communication)
+
+5. Jeong Min Ho
+- Arduino Code
+- ECG Bluetooth Connection
+- Receive and Process Bluetooth Data
